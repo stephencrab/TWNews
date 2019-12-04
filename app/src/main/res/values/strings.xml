@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TWNews</string>
+
+
+    <string-array name="tabs_title">
+        <item>Headline</item>
+        <item>Business</item>
+        <item>Entertainment</item>
+        <item>Health</item>
+        <item>Science</item>
+    </string-array>
+    <string name="title_activity_test">TestActivity</string>
+</resources>
