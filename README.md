@@ -5,5 +5,5 @@ Taiwan News from News Api
 
 使用的技術:
  1.Okhttp、Gson、Glide
- 2.ViewPager 、 Fragment
+ 2.ViewPager、Fragment
  3.RecyclerView、CardView
