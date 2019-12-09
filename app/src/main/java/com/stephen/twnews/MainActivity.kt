@@ -1,27 +1,14 @@
 package com.stephen.twnews
 
-import android.content.Intent
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.PagerAdapter
+import com.stephen.twnews.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import org.json.JSONObject
-import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         val pagerAdapter = NewsPagerAdapter(supportFragmentManager)
         pager.adapter = pagerAdapter
         tabs.setupWithViewPager(pager)
-
 
     }
 

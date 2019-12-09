@@ -1,4 +1,4 @@
-package com.stephen.twnews
+package com.stephen.twnews.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -8,15 +8,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.stephen.twnews.model.Article
+import com.stephen.twnews.R
+import com.stephen.twnews.api.NewsApi
+import com.stephen.twnews.api.NewsClient
+import com.stephen.twnews.model.News
+import com.stephen.twnews.view.ArticleAdapter
 import kotlinx.android.synthetic.main.fragment_headline.*
-import okhttp3.*
-import org.json.JSONArray
-import org.json.JSONObject
-import java.io.IOException
-import java.util.ArrayList
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HeadlineFragment() : Fragment() {
-
+    val apiKey = "e06c56d9996146c58143b54fc48650d7"
+    val country = "tw"
     private val TAG: String? = HeadlineFragment::class.java.simpleName
     var articles = mutableListOf<Article>()
 
@@ -30,7 +35,22 @@ class HeadlineFragment() : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val client = OkHttpClient()
+        NewsClient.getClient.create(NewsApi::class.java)
+            .getHeadline(country, apiKey).enqueue(object : Callback<News> {
+
+            override fun onFailure(call: Call<News>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onResponse(call: Call<News>, response: Response<News>) {
+               response.body()?.let {
+                    articles = it.articles
+               }
+                recycler.adapter = ArticleAdapter(articles)
+            }
+        })
+
+        /*val client = OkHttpClient()
         val request = Request.Builder()
             .url("https://newsapi.org/v2/top-headlines?country=tw&apiKey=e06c56d9996146c58143b54fc48650d7")
             .build()
@@ -46,7 +66,7 @@ class HeadlineFragment() : Fragment() {
                     recycler.adapter = ArticleAdapter(articles)
                 }
             }
-        })
+        })*/
         Log.d(TAG, ": Headline");
     }
 

@@ -1,4 +1,4 @@
-package com.stephen.twnews
+package com.stephen.twnews.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -8,25 +8,30 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.stephen.twnews.model.Article
+import com.stephen.twnews.R
+import com.stephen.twnews.api.NewsApi
+import com.stephen.twnews.api.NewsClient
+import com.stephen.twnews.model.News
+import com.stephen.twnews.view.ArticleAdapter
 import kotlinx.android.synthetic.main.fragment_business.*
-import okhttp3.*
-import java.io.IOException
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class BusinessFragment : Fragment() {
 
     private val TAG = BusinessFragment::class.java.simpleName
     var articles = mutableListOf<Article>()
+    val apiKey = "e06c56d9996146c58143b54fc48650d7"
+    val country = "tw"
+    val category = "business"
 
     companion object {
         val instance : BusinessFragment by lazy {
             BusinessFragment()
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d(TAG, "onCreate: ");
     }
 
     override fun onCreateView(
@@ -36,24 +41,19 @@ class BusinessFragment : Fragment() {
     ): View? {
         Log.d(TAG, "onCreateView: ");
 
-        val client = OkHttpClient()
-        val request = Request.Builder()
-            .url("https://newsapi.org/v2/top-headlines?country=tw&category=business&apiKey=e06c56d9996146c58143b54fc48650d7")
-            .build()
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
+        NewsClient.getClient.create(NewsApi::class.java)
+            .getCategory(country, category, apiKey).enqueue(object : Callback<News> {
+                override fun onFailure(call: Call<News>, t: Throwable) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
 
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                var json = response.body?.string()
-                activity?.runOnUiThread {
-                    articles = OkHttpConnection().parseJSON(json)
+                override fun onResponse(call: Call<News>, response: Response<News>) {
+                    response.body()?.let {
+                        articles = it.articles
+                    }
                     recycler.adapter = ArticleAdapter(articles)
                 }
-            }
-
-        })
+            })
 
         val recycler = inflater.inflate(R.layout.fragment_business, container, false) as RecyclerView
 

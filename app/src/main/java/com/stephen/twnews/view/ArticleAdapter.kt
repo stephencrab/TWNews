@@ -1,15 +1,24 @@
-package com.stephen.twnews
+package com.stephen.twnews.view
 
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.stephen.twnews.model.Article
+import com.stephen.twnews.R
+import com.stephen.twnews.WebViewActivity
 
 class ArticleAdapter(val articles: List<Article>) : RecyclerView.Adapter<ArticleViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
-        return ArticleViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cardview_article, parent, false))
+        return ArticleViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.cardview_article,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int = articles.size

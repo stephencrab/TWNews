@@ -1,4 +1,4 @@
-package com.stephen.twnews
+package com.stephen.twnews.model
 
 import com.google.gson.annotations.SerializedName
 import org.json.JSONObject

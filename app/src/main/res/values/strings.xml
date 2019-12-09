@@ -3,11 +3,11 @@
 
 
     <string-array name="tabs_title">
-        <item>Headline</item>
-        <item>Business</item>
-        <item>Entertainment</item>
-        <item>Health</item>
-        <item>Science</item>
+        <item>headline</item>
+        <item>business</item>
+        <item>entertainment</item>
+        <item>health</item>
+        <item>science</item>
     </string-array>
     <string name="title_activity_test">TestActivity</string>
 </resources>
