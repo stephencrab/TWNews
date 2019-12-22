@@ -7,3 +7,6 @@ Taiwan News from News Api
  1.Okhttp、Gson、Glide
  2.ViewPager、Fragment
  3.RecyclerView、CardView
+ 
+ 2019/12/9
+ 新增以Retrofit取得資料
