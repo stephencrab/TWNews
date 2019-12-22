@@ -10,4 +10,6 @@
         <item>science</item>
     </string-array>
     <string name="title_activity_test">TestActivity</string>
+    <string name="about_this_twnews_app">About This TWNews App</string>
+    <string name="about_text">TWNews App is a simple news app which uses NewsAPI to fetch top news headlines from Taiwan.\n\nThe news source is powered by NewsAPI.org !</string>
 </resources>

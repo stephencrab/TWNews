@@ -1,8 +1,11 @@
 package com.stephen.twnews
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -34,6 +37,19 @@ class MainActivity : AppCompatActivity() {
         pager.adapter = pagerAdapter
         tabs.setupWithViewPager(pager)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_about -> startActivity(Intent(this, AboutActivity::class.java))
+            else -> return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     inner class NewsPagerAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
