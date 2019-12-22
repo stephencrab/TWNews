@@ -10,3 +10,6 @@ Taiwan News from News Api
  
  2019/12/9
  新增以Retrofit取得資料
+ 
+ 2019/12/22
+ 加入menu功能、修復載入失敗時以預設圖片顯示
